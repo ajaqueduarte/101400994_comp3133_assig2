@@ -1,5 +1,5 @@
 {
-  "name": "101380203-comp3133-assig2",
+  "name": "101400994-comp3133-assig2",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -15,15 +15,15 @@
     "@angular/compiler": "^17.3.0",
     "@angular/core": "^17.3.0",
     "@angular/forms": "^17.3.0",
-    "@angular/platform-browser": "^17.3.0",
+    "@angular/platform-browser": "^17.3.3",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "@apollo/client": "^3.0.0",
     "apollo-angular": "^6.0.0",
+    "graphql": "^16",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.3",
-    "@apollo/client": "^3.0.0",
-    "graphql": "^16"
+    "zone.js": "~0.14.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.3",

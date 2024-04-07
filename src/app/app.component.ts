@@ -10,7 +10,7 @@ import { RegisterComponent } from "./auth/register/register.component";
     templateUrl: "./app.component.html",
 })
 export class AppComponent {
-    title = "101380203-comp3133-assig2";
+    title = "101400994-comp3133-assig2";
     constructor() {
         console.log("AppComponent created");
     }

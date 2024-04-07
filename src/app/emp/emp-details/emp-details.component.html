@@ -1,0 +1,49 @@
+<div class="w-full h-screen py-10 flex justify-start items-center gap-6 flex-col">
+    <div class="flex gap-10">
+        <button class="btn btn-circle btn-outline" (click)="backToList()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+            </svg>
+        </button>
+        <h2 class="w-full text-center text-5xl font-bold">Employee Details</h2>
+    </div>
+    <div class="w-3/4">
+        <div class="overflow-x-auto">
+            @if (!this.employee) {
+            <span class="loading loading-spinner loading-lg"></span>
+            } @else {
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <div class="flex gap-6">
+                        <div class="flex flex-col gap-4">
+                            <div class="">
+                                <div class="flex items-center gap-5">
+                                    <h2 class="text-4xl font-bold">{{ this.employee.first_name }} {{
+                                        this.employee.last_name
+                                        }}
+                                    </h2>
+                                    @switch (this.employee.gender) {
+                                    @case ("male") {
+                                    <div class="badge badge-primary">{{ this.employee.gender }}</div>
+                                    }
+                                    @case ("female") {
+                                    <div class="badge badge-secondary">{{ this.employee.gender }}</div>
+                                    }
+                                    @default {
+                                    <div class="badge badge-accent">{{ this.employee.gender }}</div>
+                                    }
+                                    }
+                                </div>
+                                <p class="text-lg">{{ this.employee.email }}</p>
+                            </div>
+                            <p class="text-lg">Salary: {{ this.employee.salary.toLocaleString("en-CA", { style:
+                                "currency", currency: "CAD" }) }}</p>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            }
+        </div>
+    </div>
+</div>

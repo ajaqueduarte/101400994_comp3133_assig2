@@ -1,0 +1,29 @@
+<div class="flex flex-col gap-5 shadow-xl border-2 border-base-200 p-8 rounded-3xl">
+    <div class="relative w-full">
+        <button class="absolute left-0 top-0.5 btn btn-sm btn-error btn-outline btn-circle"
+            (click)="this.navigateToLogin()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+            </svg>
+        </button>
+        <h2 class="w-full text-center text-3xl font-bold">Register</h2>
+    </div>
+
+    <form class="w-full flex flex-col gap-4" [noValidate]="false" (ngSubmit)="performRegister($event)">
+        <input placeholder="Username" class="input input-primary" [(ngModel)]="username" name="username" required />
+        <input type="email" placeholder="Email" class="input input-primary" [(ngModel)]="email" name="email" required />
+        <input type="password" placeholder="Password" class="input input-primary" [(ngModel)]="password" name="password"
+            required />
+        <input type="password" placeholder="Confirm Password" class="input input-primary" [(ngModel)]="confirmPassword"
+            name="confirmPassword" required />
+
+        @if (this.loading) {
+        <button class="btn btn-block btn-primary mt-2 btn-disabled">
+            Loading... <span class="loading loading-spinner loading-md"></span>
+        </button>
+        } @else {
+        <button type="submit" class="btn btn-block btn-primary mt-2">Register</button>
+        }
+    </form>
+</div>

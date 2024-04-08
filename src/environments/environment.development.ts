@@ -1,4 +1,4 @@
 export const environment = {
     development: true,
-    apiUrl: "https://fstack2-backend.onrender.com",
+    apiUrl: "https://assignments-fullstack2.onrender.com",
 };

@@ -3,6 +3,8 @@ import { FormsModule } from "@angular/forms";
 import { Employee, EmployeeInput, Gender } from "../../../model/models";
 import { Apollo, gql } from "apollo-angular";
 import { CommonModule } from "@angular/common";
+import { HttpClient } from '@angular/common/http';
+
 
 const EMPLOYEE_ADD = gql`
     mutation addEmployee($employee: EmployeeInput!) {
@@ -25,6 +27,13 @@ const EMPLOYEE_EDIT = gql`
     }
 `;
 
+const EMPLOYEE_DELETE = gql`
+    mutation deleteEmployee($_id: String!) {
+        deleteEmployee(_id: $_id)
+    }
+`;
+
+
 export enum Actions {
     ADD = "add",
     EDIT = "edit",
@@ -39,7 +48,6 @@ export enum Actions {
 export class EmpEditComponent {
     title = "";
     action: Actions | null = null;
-    // employeeData: Employee | null = null;
 
     _id?: string = undefined;
     first_name?: string = undefined;
@@ -49,7 +57,7 @@ export class EmpEditComponent {
     salary?: number = undefined;
 
     genders = Object.values(Gender);
-    // currentGender: string = "";
+
     @ViewChild("editDialog", { static: false })
     editDialog!: ElementRef<HTMLDialogElement>;
     loading: boolean = false;
@@ -150,6 +158,41 @@ export class EmpEditComponent {
                     if (res.errors) console.error(res.errors);
                     if (!res.data || !res.data.updateEmployee) return;
                     this.closeModal(new Event("close"));
+                },
+                error: (ex) => {
+                    this.loading = false;
+                    console.error(ex);
+                },
+            });
+    }
+    onDelete(_id: string) {
+        if (!confirm("Are you sure you want to delete this employee?")) {
+            return;
+        }
+
+        this.loading = true;
+        this.apollo
+            .mutate<{ deleteEmployee: boolean }>({
+                mutation: EMPLOYEE_DELETE,
+                variables: {
+                    _id,
+                },
+            })
+            .subscribe({
+                next: (res) => {
+                    this.loading = false;
+
+                    if (res.errors) {
+                        console.error(res.errors);
+                        return;
+                    }
+
+                    if (res.data && res.data.deleteEmployee) {
+                        console.log("Employee deleted successfully");
+                        // You can add further actions here, like refreshing the employee list.
+                    } else {
+                        console.error("Failed to delete employee");
+                    }
                 },
                 error: (ex) => {
                     this.loading = false;

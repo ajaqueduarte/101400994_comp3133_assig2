@@ -4,7 +4,7 @@ import { ApplicationConfig, inject } from "@angular/core";
 import { ApolloClientOptions, InMemoryCache } from "@apollo/client/core";
 import { environment } from "../environments/environment";
 
-const uri = environment.apiUrl; //"https://fstack2-backend.onrender.com"; // <-- add the URL of the GraphQL server here
+const uri = environment.apiUrl; 
 export function apolloOptionsFactory(): ApolloClientOptions<any> {
     const httpLink = inject(HttpLink);
     return {

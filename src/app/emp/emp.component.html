@@ -2,15 +2,15 @@
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col items-center justify-center">
         <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-        <router-outlet />
+        <router-outlet></router-outlet>
     </div>
     <div class="drawer-side">
         <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-fit min-h-full max-h-screen bg-base-200 text-base-content">
+        <ul class="menu p-4 w-full min-h-full max-h-screen overflow-y-auto bg-base-200 text-base-content">
             <li class="my-4">
                 <h3 class="text-2xl">
                     @if (this.user) {
-                    Welcome back {{ this.user.username }}!
+                    Welcome !!!! {{ this.user.username }}!
                     }
                 </h3>
             </li>
@@ -25,16 +25,21 @@
                     Employee list
                 </a>
             </li>
-            <!-- <li>
-                <a>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
-                    </svg>
-                    Employee Filter
-                </a>
-            </li> -->
+            <!-- Add buttons for edit and delete here -->
+            <li *ngFor="let employee of employees" >
+                <div class="flex justify-left items-center w-full">
+                    <div>{{ employee.first_name }} {{ employee.last_name }}</div>
+                    <div>Salary: {{ employee.salary }}</div>
+                    <div class="flex space-x-2">
+                        <!-- Edit button -->
+                        <button class="btn btn-sm btn-primary" (click)="onEdit(employee._id)">Edit</button>
+                        <!-- Delete button -->
+                        <button class="btn btn-sm btn-error" (click)="onDelete(employee._id)">Delete</button>
+                    </div>
+                </div>
+                scroll
+            </li>
+            
             <li class="mt-auto">
                 <a (click)="onLogout()">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

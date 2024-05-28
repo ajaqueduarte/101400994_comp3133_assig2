@@ -3,6 +3,8 @@
 To access the webpage :
 https://101400994-comp3133-assig2.vercel.app/auth/login
 
+Frontend was deployed on vercel
+backend is in another directory >>>  https://github.com/ajaqueduarte/Assignments_FullStack2/tree/main
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
 
